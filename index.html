@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retail Sales Analytics | Reyan Reza</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1220;
+            color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            background: #111c2e;
+            border-bottom: 1px solid #26364e;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #65d6c5;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #65d6c5;
+        }
+
+        .hero {
+            padding: 90px 8%;
+            background: linear-gradient(120deg, #14243b, #0b1220);
+        }
+
+        .hero span {
+            color: #65d6c5;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #a8b6cc;
+            font-size: 18px;
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        .section {
+            padding: 55px 8%;
+            scroll-margin-top: 20px;
+        }
+
+        .section h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #a8b6cc;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #17243a;
+            padding: 25px;
+            border: 1px solid #26364e;
+            border-radius: 12px;
+            min-width: 0;
+        }
+
+        .card p {
+            color: #a8b6cc;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-size: 29px;
+            color: #65d6c5;
+        }
+
+        .chart-card h3 {
+            font-size: 19px;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 280px;
+        }
+
+        .about {
+            background: #111c2e;
+            border-radius: 12px;
+            padding: 30px;
+            color: #a8b6cc;
+            line-height: 1.8;
+        }
+
+        .findings {
+            margin-top: 25px;
+        }
+
+        .findings p {
+            margin: 10px 0;
+        }
+
+        .recommendation-card h3 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #a8b6cc;
+            border-top: 1px solid #26364e;
+        }
+
+        @media (max-width: 1000px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero {
+                padding: 65px 8%;
+            }
+
+            nav {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="logo">REYAN.</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#overview">Overview</a>
+            <a href="#analysis">Analysis</a>
+            <a href="#charts">Charts</a>
+            <a href="#dataset">Dataset</a>
+            <a href="#cleaning">Cleaning</a>
+            <a href="#recommendations">Recommendations</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Retail Sales<br>
+            <span>Performance Analytics</span>
+        </h1>
+
+        <p>
+            A Data Analytics Project using the Global Superstore Dataset.
+            Exploring sales, profit, customer segments and business
+            performance through Python and SQL.
+        </p>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="section" id="overview">
+
+        <h2>Project Overview</h2>
+        <p class="subtitle">
+            Key performance indicators of global retail sales.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <p>Total Sales</p>
+                <h3>$12.64M</h3>
+            </div>
+
+            <div class="card">
+                <p>Total Profit</p>
+                <h3>$1.47M</h3>
+            </div>
+
+            <div class="card">
+                <p>Profit Margin</p>
+                <h3>11.6%</h3>
+            </div>
+
+            <div class="card">
+                <p>Total Orders</p>
+                <h3>25,035</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sales Analysis -->
+    <section class="section" id="analysis">
+
+        <h2>Sales Analysis</h2>
+        <p class="subtitle">
+            Category-wise sales performance across the business.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <p>Technology Sales</p>
+                <h3>$4.74M</h3>
+            </div>
+
+            <div class="card">
+                <p>Furniture Sales</p>
+                <h3>$4.10M</h3>
+            </div>
+
+            <div class="card">
+                <p>Office Supplies</p>
+                <h3>$3.77M</h3>
+            </div>
+
+            <div class="card">
+                <p>Top Customer Segment</p>
+                <h3>Consumer</h3>
+            </div>
+
+        </div>
+
+        <div class="about findings">
+            <h3>Key Findings</h3>
+
+            <p>• Technology generated the highest category sales.</p>
+            <p>• Consumer segment contributed the highest sales.</p>
+            <p>• Central region recorded the highest profit in SQL analysis.</p>
+            <p>• Standard Class was the leading shipping mode by sales.</p>
+        </div>
+
+    </section>
+
+    <!-- Data Visualization -->
+    <section class="section" id="charts">
+
+        <h2>Data Visualization</h2>
+        <p class="subtitle">
+            Interactive charts showing retail sales and profit performance.
+        </p>
+
+        <div class="cards">
+
+            <div class="card chart-card">
+                <h3>Sales by Category</h3>
+                <div class="chart-container">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card chart-card">
+                <h3>Sales by Customer Segment</h3>
+                <div class="chart-container">
+                    <canvas id="segmentChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card chart-card">
+                <h3>Sales by Year</h3>
+                <div class="chart-container">
+                    <canvas id="yearChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card chart-card">
+                <h3>Profit by Region</h3>
+                <div class="chart-container">
+                    <canvas id="regionChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Dataset Overview -->
+    <section class="section" id="dataset">
+
+        <h2>Dataset Overview</h2>
+        <p class="subtitle">
+            Understanding the data used in this project.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <p>Total Records</p>
+                <h3>51,290</h3>
+            </div>
+
+            <div class="card">
+                <p>Original Columns</p>
+                <h3>24</h3>
+            </div>
+
+            <div class="card">
+                <p>Countries</p>
+                <h3>147</h3>
+            </div>
+
+            <div class="card">
+                <p>Markets</p>
+                <h3>7</h3>
+            </div>
+
+        </div>
+
+        <div class="about findings">
+            <h3>Dataset Information</h3>
+            <p>• Dataset: Global Superstore</p>
+            <p>• Time Period: 2011–2014</p>
+            <p>• Data Type: Retail Sales Transactions</p>
+            <p>• Main Features: Sales, Profit, Quantity, Discount and Shipping Cost</p>
+        </div>
+
+    </section>
+
+    <!-- Data Cleaning -->
+    <section class="section" id="cleaning">
+
+        <h2>Data Cleaning & Preparation</h2>
+        <p class="subtitle">
+            Preparing raw data for accurate analysis.
+        </p>
+
+        <div class="about">
+            <p>• Converted Order Date and Ship Date into datetime format.</p>
+            <p>• Handled missing Postal Code values.</p>
+            <p>• Checked duplicate records.</p>
+            <p>• Created Year, Month and Shipping Days columns.</p>
+            <p>• Checked negative sales and profit values.</p>
+        </div>
+
+    </section>
+
+    <!-- Business Recommendations -->
+    <section class="section" id="recommendations">
+
+        <h2>Business Recommendations</h2>
+        <p class="subtitle">
+            Suggested actions based on the analysis.
+        </p>
+
+        <div class="cards">
+
+            <div class="card recommendation-card">
+                <h3>01</h3>
+                <p>Protect Profit</p>
+                <p>Review high-discount transactions to improve profit margins.</p>
+            </div>
+
+            <div class="card recommendation-card">
+                <h3>02</h3>
+                <p>Focus on Products</p>
+                <p>Prioritise profitable categories and products.</p>
+            </div>
+
+            <div class="card recommendation-card">
+                <h3>03</h3>
+                <p>Regional Growth</p>
+                <p>Study regional performance and identify growth opportunities.</p>
+            </div>
+
+            <div class="card recommendation-card">
+                <h3>04</h3>
+                <p>Monitor KPIs</p>
+                <p>Track sales, profit and margins every month.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- About Project -->
+    <section class="section" id="about">
+
+        <h2>About the Project</h2>
+
+        <div class="about">
+            This project analyses global retail sales data from 2011 to
+            2014. The main objective is to identify sales trends,
+            profitable product categories, customer behaviour and
+            regional performance.
+
+            <br><br>
+
+            <strong>Tools Used:</strong>
+            Python, Pandas, Matplotlib, Seaborn,
+            MySQL and Jupyter Notebook.
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        © 2026 Reyan Reza | Retail Sales Performance Analytics
+    </footer>
+
+    <!-- Chart.js Configuration -->
+    <script>
+
+        Chart.defaults.color = "#cbd5e1";
+
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false
+        };
+
+        // Sales by Category
+        new Chart(document.getElementById("categoryChart"), {
+            type: "bar",
+            data: {
+                labels: ["Technology", "Furniture", "Office Supplies"],
+                datasets: [{
+                    label: "Sales ($)",
+                    data: [4744303.53, 4101921.25, 3771526.12],
+                    backgroundColor: ["#65d6c5", "#8db8ff", "#b49aff"]
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Customer Segment
+        new Chart(document.getElementById("segmentChart"), {
+            type: "doughnut",
+            data: {
+                labels: ["Consumer", "Corporate", "Home Office"],
+                datasets: [{
+                    data: [6496714.25, 3815155.67, 2305880.98],
+                    backgroundColor: ["#65d6c5", "#8db8ff", "#b49aff"]
+                }]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    legend: {
+                        position: "bottom",
+                        labels: {
+                            boxWidth: 12,
+                            padding: 12
+                        }
+                    }
+                }
+            }
+        });
+
+        // Yearly Sales
+        new Chart(document.getElementById("yearChart"), {
+            type: "line",
+            data: {
+                labels: ["2011", "2012", "2013", "2014"],
+                datasets: [{
+                    label: "Annual Sales ($)",
+                    data: [2259451.77, 2677439.65, 3405746.34, 4299864.14],
+                    borderColor: "#65d6c5",
+                    backgroundColor: "rgba(101,214,197,0.15)",
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Profit by Region (selected regions)
+        new Chart(document.getElementById("regionChart"), {
+            type: "bar",
+            data: {
+                labels: ["Central", "North", "North Asia", "South", "Central Asia"],
+                datasets: [{
+                    label: "Profit ($)",
+                    data: [311826.52, 194597.95, 165578.42, 139642.02, 132480.19],
+                    backgroundColor: "#8db8ff"
+                }]
+            },
+            options: chartOptions
+        });
+
+    </script>
+
+</body>
+</html>
